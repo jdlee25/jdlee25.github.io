@@ -11,6 +11,12 @@
   const columns = canvas.width / cell;
   const rows = canvas.height / cell;
   const speed = 110;
+  const stars = Array.from({ length: 72 }, (_, index) => ({
+    x: (index * 83) % canvas.width,
+    y: (index * 47) % canvas.height,
+    radius: index % 5 === 0 ? 1.5 : 0.8,
+    alpha: 0.35 + (index % 4) * 0.12
+  }));
   const directions = {
     up: { x: 0, y: -1 }, down: { x: 0, y: 1 },
     left: { x: -1, y: 0 }, right: { x: 1, y: 0 }
@@ -47,6 +53,20 @@
     return open[Math.floor(Math.random() * open.length)] || { x: 0, y: 0 };
   };
   const randomFood = () => randomOpenCell();
+  const drawBackground = () => {
+    const gradient = context.createLinearGradient(0, 0, canvas.width, canvas.height);
+    gradient.addColorStop(0, '#050816');
+    gradient.addColorStop(0.55, '#111b3a');
+    gradient.addColorStop(1, '#241343');
+    context.fillStyle = gradient;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    stars.forEach((star) => {
+      context.fillStyle = `rgba(226, 232, 255, ${star.alpha})`;
+      context.beginPath();
+      context.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      context.fill();
+    });
+  };
   const createEnemy = () => {
     const position = randomOpenCell();
     return { ...position, direction: directions[['up', 'down', 'left', 'right'][Math.floor(Math.random() * 4)]] };
@@ -90,8 +110,7 @@
     }
   };
   const draw = () => {
-    context.fillStyle = '#111827';
-    context.fillRect(0, 0, canvas.width, canvas.height);
+    drawBackground();
     context.fillStyle = '#f97316';
     context.fillRect(food.x * cell + 3, food.y * cell + 3, cell - 6, cell - 6);
     snake.forEach((part, index) => {
