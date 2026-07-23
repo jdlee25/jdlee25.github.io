@@ -7,6 +7,7 @@
     <title>JD | Computer Science &amp; AI</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
+    <script src="game.js" defer></script>
   </head>
   <body>
     <header class="site-header">
@@ -15,7 +16,9 @@
         <div class="nav-links">
           <a href="#about">About</a>
           <a href="#research">Research</a>
+          <a href="#projects">Projects</a>
           <a href="#games">Games</a>
+          <a href="#contact">Contact</a>
         </div>
       </nav>
     </header>
@@ -43,13 +46,49 @@
         </div>
       </section>
 
+      <section id="projects" class="content-section" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <p class="eyebrow">Projects</p>
+          <h2 id="projects-title">Ideas becoming useful systems.</h2>
+        </div>
+        <div class="card-grid">
+          <article class="content-card"><h3>E-AI</h3><p>Efficient and robust AI systems designed to be lightweight, fast, and reliable.</p></article>
+          <article class="content-card"><h3>Model Compression</h3><p>Exploring ways to make neural networks smaller without losing what makes them powerful.</p></article>
+          <article class="content-card"><h3>Multi-Agent Reliability</h3><p>Studying how collaborating agents can remain dependable when some agents fail.</p></article>
+        </div>
+      </section>
+
       <section id="games" class="content-section games-panel" aria-labelledby="games-title">
         <div class="section-heading">
           <p class="eyebrow">Games</p>
           <h2 id="games-title">A small space to play.</h2>
         </div>
-        <p class="muted">The snake game is being prepared for a future loop.</p>
-        <div class="game-placeholder" role="status">Game area ready</div>
+        <p class="muted">Guide the snake to the food. Use arrow keys, WASD, or the touch controls.</p>
+        <div id="snake-game" class="snake-game" data-game="snake">
+          <div class="game-toolbar">
+            <span>Score <strong id="score">0</strong></span>
+            <span>Best <strong id="high-score">0</strong></span>
+            <span id="game-status" role="status">Ready</span>
+          </div>
+          <canvas id="snake-canvas" width="600" height="360" aria-label="Snake game board"></canvas>
+          <div class="game-actions">
+            <button type="button" data-action="start">Start</button>
+            <button type="button" data-action="pause">Pause</button>
+            <button type="button" data-action="restart">Restart</button>
+          </div>
+          <div class="touch-controls" aria-label="Touch controls">
+            <button type="button" data-direction="up" aria-label="Move up">↑</button>
+            <div><button type="button" data-direction="left" aria-label="Move left">←</button><button type="button" data-direction="down" aria-label="Move down">↓</button><button type="button" data-direction="right" aria-label="Move right">→</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="content-section contact-panel" aria-labelledby="contact-title">
+        <div class="section-heading">
+          <p class="eyebrow">Contact</p>
+          <h2 id="contact-title">Open to thoughtful conversations.</h2>
+        </div>
+        <p class="muted">Public contact links can be added here when available. Email and phone numbers are intentionally not published.</p>
       </section>
     </main>
 
